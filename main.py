@@ -1,4 +1,5 @@
 import random
+import time
 import string
 
 ourchar = " " + string.ascii_letters + string.digits + string.punctuation 
@@ -8,26 +9,38 @@ random.shuffle(char)
 
 #Encryption code 
 
-encrypt = input("Enter a message to encrypt : ")
-text = ' '
+
+urchoice = input("Welcome to the decryption/encryption program! Press Q to exit")
+
+while True:
+    if urchoice.upper() == "Q":
+        print("Exiting the program. Goodbye!")
+        time.sleep(1)
+        break
+ 
 
 
-for i in encrypt: #Baisically sees how many words there are in the encrypt variable and coverts them one by one
+encryption = input("Enter a message to encrypt : ")
+encrypted_text = ' '
+
+
+for i in encryption: #Baisically sees how many words there are in the encrypt variable and coverts them one by one
     index = ourchar.index(i)
-    text += char[index]
+    encrypted_text += char[index]
 
-print(f"Original message : {encrypt}")
-print(f"Encrypted message : {text}")
+print(f"Original message : {encryption}")
+print(f"Encrypted message : {encrypted_text}")
 #Decryption code
 
-Dekrypt = input("Enter a message to decrypt : ")
+
+decryption = input("Enter a message to decrypt : ")
 Dekrypted_text = ""
 
-for i in Dekrypt:
+for i in decryption:
     index = char.index(i)
     Dekrypted_text += ourchar[index]
 
-print(f"Encrypted message : {Dekrypt}")
+print(f"Encrypted message : {decryption}")
 print(f"Decrypted message : {Dekrypted_text}")
 
 
