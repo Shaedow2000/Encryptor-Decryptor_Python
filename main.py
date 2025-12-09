@@ -10,14 +10,19 @@ random.shuffle(char)
 #Encryption code 
 
 
-urchoice = input("Welcome to the decryption/encryption program! Press Q to exit")
+urchoice = input("Welcome to the decryption/encryption program! Press Q to exit and C to continue: ")
 
 while True:
     if urchoice.upper() == "Q":
         print("Exiting the program. Goodbye!")
         time.sleep(1)
         break
- 
+    elif urchoice.upper() == "C":
+        print("Continuing to the encryption/decryption process.")
+        time.sleep(1)
+        break
+    else:
+        urchoice = input("Invalid input. Please press Q to exit and C to continue: ")
 
 
 encryption = input("Enter a message to encrypt : ")
