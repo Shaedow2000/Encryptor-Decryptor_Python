@@ -12,7 +12,7 @@ encrypt = input("Enter a message to encrypt : ")
 text = ' '
 
 
-for i in encrypt: #Baisically sees how many words there are in choice and coverts them one by one
+for i in encrypt: #Baisically sees how many words there are in the encrypt variable and coverts them one by one
     index = ourchar.index(i)
     text += char[index]
 
@@ -29,3 +29,13 @@ for i in Dekrypt:
 
 print(f"Encrypted message : {Dekrypt}")
 print(f"Decrypted message : {Dekrypted_text}")
+
+
+
+#OUTPUT
+# Enter a message to encrypt : Hello World!
+# Original message : Hello World!
+# Encrypted message : 9fGg}rYgqv
+# Enter a message to decrypt : 9fGg}rYgqv   
+# Encrypted message : 9fGg}rYgqv
+# Decrypted message :  Hello World! 
