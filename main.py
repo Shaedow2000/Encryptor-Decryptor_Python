@@ -7,6 +7,8 @@ char = list(ourchar)
 
 random.shuffle(char)
 
+print(char)
+
 #Encryption code 
 
 
@@ -26,7 +28,7 @@ while True:
 
 
 encryption = input("Enter a message to encrypt : ")
-encrypted_text = ' '
+encrypted_text = " "
 
 
 for i in encryption: #Baisically sees how many words there are in the encrypt variable and coverts them one by one
