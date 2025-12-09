@@ -2,7 +2,7 @@ import random
 import string
 
 
-def chars( key: str ) -> list:
+def shuffle( key: str ) -> list:
     # this function will be shuffling the chars list in a way that the shuffle stays the same if the user enters the same key.
     # in another way, if u enter a key then excrypt a message, you will not be able to decrypt it.
     # so to decrypt the message you need the same key used to encrypt the message.
@@ -13,3 +13,5 @@ def chars( key: str ) -> list:
     lock.shuffle( chars )
 
     return chars
+
+
