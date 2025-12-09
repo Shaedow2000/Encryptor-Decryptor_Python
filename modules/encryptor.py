@@ -1,4 +1,4 @@
-from chars import shuffle
+from modules.chars import shuffle
 
 def encrypt( msg: str, key: str ) -> str:
     """
