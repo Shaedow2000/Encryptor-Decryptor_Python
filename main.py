@@ -1,6 +1,7 @@
 import os
 
 from modules.encryptor import encrypt
+from modules.decryptor import decrypt
 
 def main() -> None:
     """
@@ -30,7 +31,14 @@ def main() -> None:
             print( '\n!> Encrypted message:' )
             print( enc_msg )
         elif inp == '2':
-            pass
+            enc_msg: str = input( '==> Message to decrypt: ' )
+            print( '>> Please enter the key used to encrypt this message...' )
+            key: str = input( '==> Key: ' )
+
+            msg: str = decrypt( enc_msg, key )
+
+            print( '\n!> Decrypted message:' )
+            print( msg )
         else: 
             print( f'!-> { inp } is an unknown command.' )
             continue
