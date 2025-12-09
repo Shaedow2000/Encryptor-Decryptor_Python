@@ -1,6 +1,10 @@
 import os
 
 def main() -> None:
+    """
+    main function
+    """
+
     print( '1: encrypt | 2: decrypt | c: clear screen | q: quit' )
     while True:
         inp: str = input( '==> ' ).replace( ' ', '' ).lower()
