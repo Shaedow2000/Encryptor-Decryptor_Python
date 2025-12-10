@@ -7,6 +7,10 @@ chars: list[ str ] = list( string.ascii_letters + string.digits + ' ' )
 commands_msg: str = '\tq: quit | 1: encrypt | 2: decrypt | c: clear screen'
 
 def shuffle( chars: list[ str ], key: str ) -> list[ str ]:
+    """
+    Shuffle list in a random way using a key.
+    """
+
     rand = random.Random( key )
 
     rand.shuffle( chars )
@@ -14,12 +18,23 @@ def shuffle( chars: list[ str ], key: str ) -> list[ str ]:
     return chars
 
 def encrypt( msg: str, key: str ) -> str:
+    """
+    Encrypt a message using a key.
+    """
+    
     pass
 
 def decrypt( enc_msg: str, key: str ) -> str:
+    """
+    Decrypt a message using a specific key.
+    """
+
     pass
 
 def main() -> None:
+    """
+    Main function.
+    """
     print( commands_msg )
 
     while True:
