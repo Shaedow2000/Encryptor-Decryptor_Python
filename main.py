@@ -42,8 +42,20 @@ def decrypt( enc_msg: str, key: str ) -> str:
     """
     Decrypt a message using a specific key.
     """
+    
+    shuffled_chars: list[ str ] = shuffle( chars, key )
 
-    pass
+    enc_msg_list: list[ str ] = list( enc_msg )
+    msg_list: list[ str ] = []
+
+    for i in range( enc_msg_list.__len__() ):
+        char_index: int = shuffled_chars.index( enc_msg_list[ i ] )
+        msg_list.append( chars[ char_index ] )
+
+    msg: str = ''.join( msg_list )
+
+    return msg
+     
 
 def main() -> None:
     """
@@ -70,7 +82,11 @@ def main() -> None:
 
             print( f'==> Encrypted message: \n{ enc }' )
         elif inp == '2':
-            decrypt( '', '' )
+            enc_msg: str = input( '-> Enter encrypted message to decyrpt: ' )
+            key: str = input( '-> Enter the specific key: ' )
+            dec: str = decrypt( enc_msg, key )
+
+            print( f'==> Decrypted message: \n{ dec }' )
         else:
             print( f'!> Unknown command { inp }.' )
             continue
