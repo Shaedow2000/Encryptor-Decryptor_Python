@@ -1,54 +1,64 @@
-import os
-import sys
+import random
+import time
+import string
 
-from modules.encryptor import encrypt
-from modules.decryptor import decrypt
+ourchar = " " + string.ascii_letters + string.digits + string.punctuation  #abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
+char = list(ourchar) #Converts ourchar into a list so that we can shuffle it
 
-def main() -> None:
-    """
-    main function
-    """
-
-    print( '1: encrypt | 2: decrypt | c: clear screen | q: quit' )
-    
-    try:
-        while True:
-            inp: str = input( '==> ' ).replace( ' ', '' ).lower()
-    
-            if inp == '':
-                continue
-            elif inp == 'c':
-                os.system( 'cls' if os.name == 'nt' else 'clear' )
-                print( '1: encrypt | 2: decrypt | c: clear screen | q: quit' )
-                continue
-            elif inp == 'q':
-                print( '--> Exiting...' )
-                break
-            elif inp == '1':
-                msg: str = input( '==> Message to encrypt: ' )
-                print( '>> Please enter a secure key and save it to decrypt messages that use this key...' )
-                key: str = input( '==> Key: ' )
-
-                enc_msg: str = encrypt( msg, key )
-
-                print( '\n!> Encrypted message:' )
-                print( enc_msg )
-            elif inp == '2':
-                enc_msg: str = input( '==> Message to decrypt: ' )
-                print( '>> Please enter the key used to encrypt this message...' )
-                key: str = input( '==> Key: ' )
-
-                msg: str = decrypt( enc_msg, key )
-
-                print( '\n!> Decrypted message:' )
-                print( msg )
-            else: 
-                print( f'!-> [ { inp } ] is an unknown command.' )
-                continue
-    except KeyboardInterrupt:
-        print( '\n--> Exiting...' )
-        sys.exit( 1 )
+random.shuffle(char) #Shuffles the list char so that the characters are in a random order
 
 
-if __name__ == '__main__':
-    main()
+
+
+
+
+#User choice to continue or exit
+urchoice = input("Welcome to the decryption/encryption program! Press Q to exit and C to continue: ")
+
+while True:
+    if urchoice.upper() == "Q":
+        print("Exiting the program. Goodbye!")
+        time.sleep(1)
+        break
+    elif urchoice.upper() == "C":
+        print("Continuing to the encryption/decryption process.")
+        time.sleep(1)
+        break
+    else:
+        urchoice = input("Invalid input. Please press Q to exit and C to continue: ")
+
+#Encryption code
+encryption = input("Enter a message to encrypt : ") #Takes user input for encryption
+encrypted_text = " " #Empty string to store the encrypted text
+
+
+for i in encryption: #Baisically sees how many words there are in the encrypt variable and coverts them one by one
+    index = ourchar.index(i) #Finds the index of each character in the ourchar string
+    encrypted_text += char[index] #Adds the corresponding character from the shuffled char list to the encrypted_text string
+
+print(f"Original message : {encryption}") #Prints the original message
+print(f"Encrypted message : {encrypted_text}") #Prints the encrypted message
+
+
+#Decryption code
+
+
+decryption = input("Enter a message to decrypt : ") #Takes user input for decryption
+Dekrypted_text = "" #Empty string to store the decrypted text
+
+for i in decryption: #Baisically sees how many words there are in the decrypt variable and coverts them one by one
+    index = char.index(i) #Finds the index of each character in the char list
+    Dekrypted_text += ourchar[index] #Adds the corresponding character from the ourchar string to the Dekrypted_text string
+
+print(f"Encrypted message : {decryption}") #Prints the encrypted message
+print(f"Decrypted message : {Dekrypted_text}") #Prints the decrypted message
+
+
+
+#OUTPUT
+# Enter a message to encrypt : Hello World!
+# Original message : Hello World!
+# Encrypted message : 9fGg}rYgqv
+# Enter a message to decrypt : 9fGg}rYgqv   
+# Encrypted message : 9fGg}rYgqv
+# Decrypted message :  Hello World! 
