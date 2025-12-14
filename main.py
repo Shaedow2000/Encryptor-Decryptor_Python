@@ -1,64 +1,80 @@
-import random
-import time
 import string
+import random
 
-ourchar = " " + string.ascii_letters + string.digits + string.punctuation  #abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
-char = list(ourchar) #Converts ourchar into a list so that we can shuffle it
+#new and improved..
 
-random.shuffle(char) #Shuffles the list char so that the characters are in a random order
-
-
-
+char = string.ascii_letters + string.digits + string.punctuation + " " #abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
+chars = list(char) #converts char into a list
 
 
+def shuffle( chars: list[ str ], key: str ) -> list[ str ]:
+    """
+    Shuffle list in a random way using a key.      <---
+    """
 
-#User choice to continue or exit
-urchoice = input("Welcome to the decryption/encryption program! Press Q to exit and C to continue: ")
+    shuffled_chars: list[ str ] = chars[ : ]
 
+    lock = random.Random( key )
+
+    lock.shuffle( shuffled_chars )
+
+    return shuffled_chars
+
+
+def encrypt(encryption,  key) : #Encrypts the submitted text
+    shuffled_chars: list[ str ] = shuffle( chars, key ) #<--- calls the shuffle function earlier defined
+    msglist = list(encryption) #converts the encryption string into a list
+    encrypted_msg_list = [] #creates an empty list to store the encrypted message
+
+    for i in range(msglist.__len__()): #loops through the length of the message list
+        index: int = chars.index(msglist[i]) #finds the index of each character in the original chars list
+        encrypted_msg_list.append(shuffled_chars[index]) #adds the corresponding character from the shuffled chars list to the encrypted message list
+    
+    encryption = ''.join(encrypted_msg_list) #joins the encrypted message list into a string/word
+    
+
+
+    
+    return encryption
+
+
+def decrypt(decryption,key) : #Decrypts the submitted text
+    shuffled_chars: list[ str ] = shuffle( chars, key ) #<--- calls the shuffle function earlier defined
+    encrypted_msg_list = list(decryption) #converts the decryption string into a list
+    msg_list = [] #creates an empty list to store the decrypted message
+    for i in range(encrypted_msg_list.__len__()): #loops through the length of the encrypted message list
+        index = shuffled_chars.index( encrypted_msg_list[ i ] ) #finds the index of each character in the shuffled chars list
+        msg_list.append(char[index]) #adds the corresponding character from the original chars list to the decrypted message list
+    decryption = ''.join(msg_list) #joins the decrypted message list into a string/word
+
+        
+
+    return decryption 
+
+
+#MAIN PART OF THE PROGRAM :
 while True:
-    if urchoice.upper() == "Q":
-        print("Exiting the program. Goodbye!")
-        time.sleep(1)
+    choice = input("Welcome to the Encryption-Decryption Program (press Q to exit) (E to start.) " \
+            " (D to Decrypt.) and (H for help): ")
+    if choice.lower() == 'q':
         break
-    elif urchoice.upper() == "C":
-        print("Continuing to the encryption/decryption process.")
-        time.sleep(1)
-        break
+    elif choice.lower() == 'e': 
+        encryption = input("Enter text to encrypt: ")
+        key = input("Enter encryption key: ")
+        encryptions = encrypt(encryption, key)
+        print(f"Encrypted text: {encryptions}")
+    elif choice.lower() == 'd':
+        decryption : str = input("Enter text to decrypt: ")
+        key = input("Enter  decryption key: ")
+        decryptions = decrypt(decryption, key)
+        print(f"Decrypted text: {decryptions}")
+    elif choice.lower() == 'h':
+        print("This program allows you to encrypt and decrypt text using a custom key.")
+        print("To encrypt text, choose 'E' and provide the text and a key.")
+        print("To decrypt text, choose 'D' and provide the encrypted text and the same key used for encryption.")
+        print("Press 'Q' to exit the program.")  
+        print("Program provided by Monium and Sal")  
     else:
-        urchoice = input("Invalid input. Please press Q to exit and C to continue: ")
-
-#Encryption code
-encryption = input("Enter a message to encrypt : ") #Takes user input for encryption
-encrypted_text = " " #Empty string to store the encrypted text
+        print("Invalid choice. Please try again.")
 
 
-for i in encryption: #Baisically sees how many words there are in the encrypt variable and coverts them one by one
-    index = ourchar.index(i) #Finds the index of each character in the ourchar string
-    encrypted_text += char[index] #Adds the corresponding character from the shuffled char list to the encrypted_text string
-
-print(f"Original message : {encryption}") #Prints the original message
-print(f"Encrypted message : {encrypted_text}") #Prints the encrypted message
-
-
-#Decryption code
-
-
-decryption = input("Enter a message to decrypt : ") #Takes user input for decryption
-Dekrypted_text = "" #Empty string to store the decrypted text
-
-for i in decryption: #Baisically sees how many words there are in the decrypt variable and coverts them one by one
-    index = char.index(i) #Finds the index of each character in the char list
-    Dekrypted_text += ourchar[index] #Adds the corresponding character from the ourchar string to the Dekrypted_text string
-
-print(f"Encrypted message : {decryption}") #Prints the encrypted message
-print(f"Decrypted message : {Dekrypted_text}") #Prints the decrypted message
-
-
-
-#OUTPUT
-# Enter a message to encrypt : Hello World!
-# Original message : Hello World!
-# Encrypted message : 9fGg}rYgqv
-# Enter a message to decrypt : 9fGg}rYgqv   
-# Encrypted message : 9fGg}rYgqv
-# Decrypted message :  Hello World! 
