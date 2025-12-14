@@ -7,7 +7,7 @@ char = string.ascii_letters + string.digits + string.punctuation + " " #abcdefgh
 chars = list(char) #converts char into a list
 
 
-def shuffle( chars: list[ str ], key: str ) -> list[ str ]:
+def shuffle( chars: list[ str ] , key):
     """
     Shuffle list in a random way using a key.      <---
     """
@@ -26,7 +26,7 @@ def encrypt(encryption,  key) : #Encrypts the submitted text
     msglist = list(encryption) #converts the encryption string into a list
     encrypted_msg_list = [] #creates an empty list to store the encrypted message
 
-    for i in range(msglist.__len__()): #loops through the length of the message list
+    for i in range(len(msglist)): #loops through the length of the message list
         index: int = chars.index(msglist[i]) #finds the index of each character in the original chars list
         encrypted_msg_list.append(shuffled_chars[index]) #adds the corresponding character from the shuffled chars list to the encrypted message list
     
@@ -42,7 +42,7 @@ def decrypt(decryption,key) : #Decrypts the submitted text
     shuffled_chars: list[ str ] = shuffle( chars, key ) #<--- calls the shuffle function earlier defined
     encrypted_msg_list = list(decryption) #converts the decryption string into a list
     msg_list = [] #creates an empty list to store the decrypted message
-    for i in range(encrypted_msg_list.__len__()): #loops through the length of the encrypted message list
+    for i in range(len(encrypted_msg_list)): #loops through the length of the encrypted message list
         index = shuffled_chars.index( encrypted_msg_list[ i ] ) #finds the index of each character in the shuffled chars list
         msg_list.append(char[index]) #adds the corresponding character from the original chars list to the decrypted message list
     decryption = ''.join(msg_list) #joins the decrypted message list into a string/word
@@ -76,5 +76,3 @@ while True:
         print("Program provided by Monium and Sal")  
     else:
         print("Invalid choice. Please try again.")
-
-
