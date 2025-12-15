@@ -7,22 +7,22 @@ char = string.ascii_letters + string.digits + string.punctuation + " " #abcdefgh
 chars = list(char) #converts char into a list
 
 
-def shuffle( chars: list[ str ] , key):
+def shuffle(chars , key):
     """
     Shuffle list in a random way using a key.      <---
     """
 
-    shuffled_chars: list[ str ] = chars[ : ]
+    shuffled_chars = list(chars) #creates a copy of the chars list
 
-    lock = random.Random( key )
+    lock = random.Random( key )  #creates a random object with the provided key
 
-    lock.shuffle( shuffled_chars )
+    lock.shuffle( shuffled_chars ) #randomly chooses words inside the copied list everytime the program is run with the same key
 
     return shuffled_chars
 
 
 def encrypt(encryption,  key) : #Encrypts the submitted text
-    shuffled_chars: list[ str ] = shuffle( chars, key ) #<--- calls the shuffle function earlier defined
+    shuffled_chars = shuffle( chars, key ) #<--- calls the shuffle function earlier defined
     msglist = list(encryption) #converts the encryption string into a list
     encrypted_msg_list = [] #creates an empty list to store the encrypted message
 
@@ -39,7 +39,7 @@ def encrypt(encryption,  key) : #Encrypts the submitted text
 
 
 def decrypt(decryption,key) : #Decrypts the submitted text
-    shuffled_chars: list[ str ] = shuffle( chars, key ) #<--- calls the shuffle function earlier defined
+    shuffled_chars = shuffle( chars, key ) #<--- calls the shuffle function earlier defined
     encrypted_msg_list = list(decryption) #converts the decryption string into a list
     msg_list = [] #creates an empty list to store the decrypted message
     for i in range(len(encrypted_msg_list)): #loops through the length of the encrypted message list
